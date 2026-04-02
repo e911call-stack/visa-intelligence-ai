@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Ensure server-only packages are never bundled for the client
-  serverExternalPackages: ['winston', 'openai'],
+  experimental: {
+    // Prevent server-only packages from being bundled for the client (Next.js 14 syntax)
+    serverComponentsExternalPackages: ['winston', 'openai'],
+  },
 };
 
 export default nextConfig;
