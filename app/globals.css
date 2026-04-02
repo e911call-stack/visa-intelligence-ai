@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=IBM+Plex+Mono:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-syne: 'Syne', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-ibm-mono: 'IBM Plex Mono', monospace;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #050A14;
+    color: #E2EAF4;
+    font-family: var(--font-dm-sans);
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: rgba(240, 165, 0, 0.25);
+    color: #F5B800;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A1220;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1C2D4A;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #243A60;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(13, 21, 38, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(28, 45, 74, 0.8);
+  }
+
+  .glass-light {
+    background: rgba(19, 32, 53, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(36, 58, 96, 0.5);
+  }
+
+  .gold-border {
+    border: 1px solid rgba(240, 165, 0, 0.3);
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 24px rgba(240, 165, 0, 0.15), 0 0 48px rgba(240, 165, 0, 0.05);
+  }
+
+  .btn-primary {
+    @apply bg-gold-400 hover:bg-gold-300 text-navy-900 font-display font-bold
+           px-6 py-3 rounded-lg transition-all duration-200
+           hover:shadow-[0_0_24px_rgba(245,184,0,0.3)]
+           active:scale-[0.98] cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply glass gold-border text-slate-text font-display font-medium
+           px-6 py-3 rounded-lg transition-all duration-200
+           hover:border-gold-500/50 hover:bg-navy-600/50 cursor-pointer;
+  }
+
+  .btn-ghost {
+    @apply text-slate-muted hover:text-slate-text font-medium
+           px-4 py-2 rounded-lg transition-all duration-200
+           hover:bg-navy-700/50 cursor-pointer;
+  }
+
+  .input-field {
+    @apply w-full bg-navy-800 border border-navy-500 rounded-lg
+           px-4 py-3 text-slate-text font-body placeholder-slate-dim
+           focus:outline-none focus:border-gold-500/60 focus:ring-1
+           focus:ring-gold-500/30 transition-all duration-200;
+  }
+
+  .select-field {
+    @apply input-field appearance-none cursor-pointer;
+  }
+
+  .card {
+    @apply glass rounded-xl p-6;
+  }
+
+  .section-label {
+    @apply font-mono text-gold-400 text-xs tracking-[0.2em] uppercase;
+  }
+
+  .score-display {
+    @apply font-mono font-bold text-gold-400 tabular-nums;
+  }
+
+  .animate-delay-100 { animation-delay: 0.1s; }
+  .animate-delay-200 { animation-delay: 0.2s; }
+  .animate-delay-300 { animation-delay: 0.3s; }
+  .animate-delay-400 { animation-delay: 0.4s; }
+  .animate-delay-500 { animation-delay: 0.5s; }
+}
+
+/* Animated grid background */
+.bg-grid {
+  background-image: linear-gradient(rgba(28,45,74,0.25) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(28,45,74,0.25) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Radial vignette */
+.vignette {
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(5,10,20,0.8) 100%);
+}
+
+/* Gauge SVG styles */
+.gauge-track { fill: none; stroke: rgba(28,45,74,0.6); }
+.gauge-fill { fill: none; stroke-linecap: round; transition: stroke-dashoffset 1.5s cubic-bezier(0.4,0,0.2,1); }
+
+/* Score bar animation */
+@keyframes barFill {
+  from { width: 0%; }
+  to { width: var(--fill-width); }
+}
+.bar-animate {
+  animation: barFill 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Typing cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Scan line effect */
+@keyframes scanLine {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+
+/* Number count-up */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
